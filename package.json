@@ -1,0 +1,20 @@
+{
+  "name": "saraha",
+  "version": "1.0.0",
+  "description": "Saraha API (صراحة) a clone of the famous anonymous feedback platform",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "Ahmed Ismail",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
