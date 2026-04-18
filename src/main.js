@@ -1,10 +1,14 @@
 // Imports
 import express from "express";
 import { config } from "./config/env.js";
+import connectDB from "./DB/connection.js";
 
 const bootstrap = async () => {
   // Initialize Express app
   const app = express();
+  // Connect to the database
+  await connectDB();
+
   // Middleware
   app.use(express.json());
   // Router handler
