@@ -11,3 +11,13 @@ export const HTTP_STATUS = {
   TOO_MANY_REQUESTS: 429,
   INTERNAL_SERVER_ERROR: 500,
 };
+
+export const USER_ROLES = {
+    USER: 'user',
+    ADMIN: 'admin'
+};
+
+export const GENDER = {
+    MALE: 'male',
+    FEMALE: 'female'
+};
