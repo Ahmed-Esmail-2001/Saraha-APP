@@ -1,112 +1,130 @@
-✉️ Saraha API (صراحة)
+# ✉️ Saraha API
 
-A RESTful API clone of the popular anonymous messaging platform "Saraha". This backend service allows users to register, share their unique profile links, and receive anonymous, constructive feedback from others.
+> A high-performance, scalable anonymous feedback platform built with a **clean architecture mindset**.
 
-Built with a strong focus on security, data validation, and a scalable modular architecture.
+---
 
-✨ Key Features
+## 📝 Overview
 
-Secure Authentication: User registration and login powered by JWT (JSON Web Tokens) and password hashing via Bcrypt.
+This project is a modern re-engineered version of the famous Saraha platform, designed with an **architecture-first approach**.
 
-Anonymous Messaging: Anyone can send a message to a registered user without needing an account.
+The goal is to provide a **secure and scalable environment** where users can receive anonymous feedback, while strictly applying software engineering principles like **Separation of Concerns (SoC)** and modular design.
 
-Message Management: Registered users can view and delete the anonymous messages they receive.
+---
 
-Input Validation: Strict data validation using Joi to prevent malicious payloads and ensure data integrity.
+## 🚀 Architecture & Design
 
-Error Handling: Centralized global error handling to ensure consistent and informative API responses.
+The system is built around strong engineering practices:
 
-🛠️ Tech Stack
+* **Modular Architecture**
+  The project is split into independent modules (`Auth`, `User`, `Message`) to improve scalability and maintainability.
 
-Runtime Environment: Node.js
+* **Security First Approach**
 
-Web Framework: Express.js
+  * Passwords are hashed using **Bcrypt** via Mongoose hooks
+  * Sensitive data (e.g. phone numbers) is encrypted using **CryptoJS**
 
-Database: MongoDB
+* **Absolute Anonymity**
+  Messages are stored without any sender reference (**No-Sender Logic**) to guarantee full privacy at the database level.
 
-ODM: Mongoose
+---
 
-Security & Auth: JSON Web Tokens (JWT), Bcrypt, Express-Mongo-Sanitize, CORS
+## ✨ Features
 
-Validation: Joi
+* 🔐 **Authentication System**
+  Secure signup & login using **JWT**
 
-📂 Project Architecture (Modular Pattern)
+* 📨 **Anonymous Messaging**
+  Send messages to any user without creating an account
 
-The project is structured using a Feature-Driven Modular Architecture to keep the codebase clean, maintainable, and highly scalable.
+* 📥 **Message Management**
+  Users can view and delete received messages
 
+* ✅ **Input Validation**
+  Strong validation using **Joi** to prevent invalid or malicious data
+
+* ⚠️ **Global Error Handling**
+  Centralized error handling for consistent API responses
+
+---
+
+## 🛠️ Tech Stack
+
+* **Backend:** Node.js, Express.js
+* **Database:** MongoDB + Mongoose
+* **Security:** JWT, Bcrypt, CryptoJS
+* **Validation:** Joi
+* **Email Service:** Nodemailer (SMTP)
+
+---
+
+## 📂 Project Structure
+
+```
 src/
-├── DB/               # Database connection and Mongoose Models (User, Message)
-├── middlewares/      # Global guards (Auth, Validation, Error Handling)
-├── modules/          # Core Business Logic
-│   ├── auth/         # Registration and Login logic
-│   ├── messages/     # Sending, reading, and deleting messages
-│   └── users/        # User profile management
-├── utils/            # Helper functions (AsyncHandler, AppError)
-└── main.js           # Express App entry point
+├── config/           # Environment variables & configurations
+├── DB/               # Database connection & models
+├── middlewares/      # Auth, validation & error handling
+├── modules/          # Core features
+│   ├── auth/         # Authentication & email confirmation
+│   ├── messages/     # Anonymous messaging logic
+│   └── users/        # User management
+├── utils/            # Helpers (errors, async handler, email templates)
+└── main.js           # App entry point
+```
 
+---
 
-🚀 Getting Started
+## ⚡ Getting Started
 
-Prerequisites
+### 1. Clone the repo
 
-Make sure you have Node.js and MongoDB installed on your machine.
-
-1. Clone the repository
-
-git clone [https://github.com/yourusername/saraha-api.git](https://github.com/yourusername/saraha-api.git)
+```bash
+git clone https://github.com/Ahmed-EsmaiL-web/saraha-api.git
 cd saraha-api
+```
 
+### 2. Install dependencies
 
-2. Install Dependencies
-
+```bash
 npm install
+```
 
+### 3. Setup environment variables
 
-3. Environment Variables
+Create a `.env` file and add:
 
-Create a .env file in the root directory and configure the following variables:
+```
+PORT=
+MONGODB_URI=
+JWT_SECRET=
+EMAIL_USER=
+EMAIL_PASS=
+```
 
-PORT=3000
-DATABASE_URI=mongodb://127.0.0.1:27017/saraha
-JWT_SECRET=your_super_secret_jwt_signature
-SALT_ROUNDS=8
+### 4. Run the project
 
-
-4. Run the Server
-
-# For development
+```bash
 npm run dev
+```
 
-# For production
-npm start
+---
 
+## 🧠 Developer Notes
 
-📡 Core API Endpoints
+This project follows a clean and scalable architecture approach:
 
-Authentication (/api/auth)
+* Business logic is separated from controllers
+* Middleware is used to handle cross-cutting concerns (validation, errors, security)
+* Sensitive operations (like encryption) are abstracted away from core logic
+* Database features like timestamps are handled automatically via Mongoose
 
-POST /api/auth/register - Register a new user account.
+---
 
-POST /api/auth/login - Authenticate a user and return a JWT.
+## 👨‍💻 Author
 
-Messages (/api/messages)
+**Ahmed Ismail**
 
-POST /api/messages/:receiverId - Send an anonymous message to a specific user. (No auth required)
+---
 
-GET /api/messages - Get all messages for the logged-in user. (Requires Auth)
-
-DELETE /api/messages/:messageId - Delete a specific message. (Requires Auth)
-
-Users (/api/users)
-
-GET /api/users/profile - View the logged-in user's profile details. (Requires Auth)
-
-GET /api/users/:id - Fetch basic public info of a user to display on their messaging page.
-
-🤝 Contributing
-
-Contributions are welcome! If you have suggestions or find a bug, please open an issue or submit a pull request.
-
-📝 License
-
-This project is open-source and available under the MIT License.
+⭐ If you found this project useful, consider giving it a star!
